@@ -1,5 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/e28hdsp6575ac6lf?svg=true)](https://ci.appveyor.com/project/AlexWEBArt/ahj-poling-frontend)
-https://alexwebart.github.io/AHJ-Polling-fronend/
+https://alexwebart.github.io/AHJ-Polling-frontend/
 
 ## Polling
 
