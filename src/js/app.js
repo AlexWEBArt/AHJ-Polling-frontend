@@ -16,7 +16,7 @@ const ajaxInterval$ = interval(1000);
 
 ajaxInterval$
   .pipe(
-    mergeMap(() => ajax.getJSON('http://localhost:7070/messages/unread')
+    mergeMap(() => ajax.getJSON('https://polling-backend-panw.onrender.com/messages/unread')
       .pipe(
         catchError((error) => {
           console.log('error: ', error);
