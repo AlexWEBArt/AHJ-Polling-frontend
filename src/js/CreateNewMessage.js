@@ -29,11 +29,6 @@ export default class CreateNewMessage {
 
     paragraphEmail.textContent = item.from;
 
-    if (item.subject.length > LIMIT) {
-      paragraphSubject.textContent = `${item.subject.slice(0, LIMIT)}...`;
-    } else {
-      paragraphSubject.textContent = item.subject;
-    }
     paragraphSubject.textContent = item.subject.length > LIMIT ? `${item.subject.slice(0, LIMIT)}...` : item.subject;
     paragraphCreated.textContent = getCreationDate(item.received);
 
