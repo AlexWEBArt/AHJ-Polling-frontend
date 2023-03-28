@@ -1,5 +1,7 @@
 import getCreationDate from './getCreationDate';
 
+const LIMIT = 15;
+
 export default class CreateNewMessage {
   constructor(conteiner) {
     this.container = conteiner;
@@ -27,11 +29,12 @@ export default class CreateNewMessage {
 
     paragraphEmail.textContent = item.from;
 
-    if (item.subject.length > 15) {
-      paragraphSubject.textContent = `${item.subject.slice(0, 15)}...`;
+    if (item.subject.length > LIMIT) {
+      paragraphSubject.textContent = `${item.subject.slice(0, LIMIT)}...`;
     } else {
       paragraphSubject.textContent = item.subject;
     }
+    paragraphSubject.textContent = item.subject.length > LIMIT ? `${item.subject.slice(0, LIMIT)}...` : item.subject;
     paragraphCreated.textContent = getCreationDate(item.received);
 
     this.container.prepend(listMessage);
