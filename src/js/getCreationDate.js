@@ -1,4 +1,6 @@
-export default function getCreationDate(date) {
+export default function getCreationDate(time) {
+  const date = new Date(time);
+
   let dateHours = date.getHours();
   let dateMinutes = date.getMinutes();
   let dateDay = date.getDate();
