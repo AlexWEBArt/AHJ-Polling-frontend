@@ -10,11 +10,10 @@ document.querySelector('body').style.backgroundImage = `url(${background})`;
 
 const mailBox = document.querySelector('.container-mail');
 
-const message = new CreateNewMessage(mailBox);
+const messageView = new CreateNewMessage(mailBox);
 
-const ajaxInterval$ = interval(1000);
-
-ajaxInterval$
+const messagesIds = new Set();
+const messages$ = interval(1000)
   .pipe(
     mergeMap(() => ajax.getJSON('https://polling-backend-panw.onrender.com/messages/unread')
       .pipe(
@@ -23,17 +22,23 @@ ajaxInterval$
           return of(null);
         }),
       )),
-  )
+  );
+
+messages$
   .subscribe({
     next: (value) => {
-      console.log(value);
-      const idList = Array.from(document.querySelectorAll('.list-message')).map((item) => item.getAttribute('id'));
-      if (value) {
-        value.messages.forEach((item) => {
-          if (!idList.includes(item.id)) {
-            message.renderMessage(item);
-          }
-        });
+      const newMessages = value.messages.reduce((acc, message) => {
+        if (messagesIds.has(message.id)) {
+          return acc;
+        }
+
+        messagesIds.add(message.id);
+        acc.push(message);
+        return acc;
+      }, [])
+
+      for (const message of newMessages) {
+        messageView.renderMessage(message);
       }
     },
     error: (err) => console.log(err),
