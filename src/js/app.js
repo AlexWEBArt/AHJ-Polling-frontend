@@ -35,7 +35,7 @@ messages$
         messagesIds.add(message.id);
         acc.push(message);
         return acc;
-      }, [])
+      }, []);
 
       for (const message of newMessages) {
         messageView.renderMessage(message);
